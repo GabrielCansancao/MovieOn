@@ -3,6 +3,7 @@ const app = express();
 const request = require('request');
 const handlebar = require("express-handlebars");
 const bodyParser = require("body-parser");
+const Filme = require("./models/Filme")
 
 //Cofiguracoes
 
@@ -18,7 +19,23 @@ app.get('/buscarfilmes', function(req,res){
 });
 
 app.post('/buscarFilmes', function(req, res){
-    res.render("listarFilmes");
+    var queryBusca =req.body.nomeDoFilme;
+   
+    var api ='https://api.themoviedb.org/3/search/movie?api_key=2340fc4617f733779a17fa1db329ea9c&language=en-US&page=1&query=';
+
+        request(api+""+queryBusca, function (error, response, body) {
+            var corpo = JSON.parse(body);
+            var filmes = [];
+            for(var results in corpo){
+                 
+                var data = corpo[results];
+                if (!Number.isInteger(data))
+                filmes.push(new Filme(data));
+                
+            }
+          res.render('listarFilmes',{filmes:filmes[0]});  
+          //res.send(filmes); // Print the HTML for the Google homepage.
+        });
     
 })
 
@@ -30,9 +47,17 @@ app.get('/', function(req,res){
     var api ='https://api.themoviedb.org/3/search/movie?api_key=2340fc4617f733779a17fa1db329ea9c&language=en-US&page=1&query=';
 
         request(api+""+queryBusca, function (error, response, body) {
-          console.error('error:', error); // Print the error if one occurred
-          console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-          res.send(body); // Print the HTML for the Google homepage.
+            var corpo = JSON.parse(body);
+            var filmes = [];
+            for(var results in corpo){
+                 
+                var data = corpo[results];
+                if (!Number.isInteger(data))
+                filmes.push(new Filme(data));
+                
+            }
+          res.render('listarFilmes',{filmes:filmes[0]});  
+          //res.send(filmes); // Print the HTML for the Google homepage.
         });
     
    

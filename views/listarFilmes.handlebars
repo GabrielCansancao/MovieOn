@@ -1,1 +1,7 @@
 <h1> listar filmes</h1>
+{{#each filmes}}
+{{#if title includeZero=true}}
+titulo: {{title}} <br>
+{{/if}}
+
+{{/each}}
