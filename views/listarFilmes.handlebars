@@ -1,7 +1,25 @@
-<h1> listar filmes</h1>
 {{#each filmes}}
 {{#if title includeZero=true}}
-titulo: {{title}} <br>
+<div class="" style="width: 18rem;">
+    <img class="" src="https://image.tmdb.org/t/p/original{{poster_path}}">
+    <div class="">
+        <h5 class="">{{title}}</h5>
+        <p class=""> {{original_title}}</p>
+          <p class="">Overview: {{overview}}</p>
+        <p class="">Original language: {{original_language}}</p>
+        <p class="">Rating: {{vote_average}}</p>
+        <p class="">Release Date: {{release_date}}</p>
+        <a href="#" class="btn btn-primary">Colocar na lista</a>
+    </div>
+</div>
+<!--<h1> {{title}} </h1><br>
+<img src="https://image.tmdb.org/t/p/original{{poster_path}}" alt="">
+Original title: {{original_title}} <br>
+Overview: {{overview}} <br>
+Original language: {{original_language}} <br>
+Rating: {{vote_average}} <br>
+Release Date: {{release_date}} <br>
+<br>-->
 {{/if}}
 
 {{/each}}
