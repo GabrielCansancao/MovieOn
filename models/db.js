@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-var sequelize = new Sequelize('movieon', 'root', '', {
-    host: 'localhost',
+var sequelize = new Sequelize('movieon', 'movieonjera', '(movieonjera)', {
+    host: 'db4free.net',
     dialect: 'mysql'
   });
 

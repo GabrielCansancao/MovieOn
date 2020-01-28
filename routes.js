@@ -21,12 +21,23 @@ module.exports = function (app) {
         objFilme.findAll({
             where: {
                 email: serialize.unserialize(usuarioLogado).email
-            }
+            },
+            raw: true,
         }).then(function (listaFilmes) {
-
+            //res.send(listaFilmes[0]);
+            var data;
+            var tempData = {};
+            var i=0;
+            for ( var filme in listaFilmes ) {
+              
+                tempData[filme] = listaFilmes[i]; 
+              i++;
+             }
+            data = tempData;
+       // res.send(data[0]);
            // res.send(listaFilmes);
             res.render("minhaLista", {
-                filmes: listaFilmes
+                filmes: data
             });
 
         });

@@ -1,6 +1,6 @@
 
-{{#each filmes key="filme" as |filme|}}
-{{#each filme}}
+{{#each filmes}}
+
 {{#if title includeZero=true}}
 <div class="" style="width: 18rem;">
     <img class="" src="https://image.tmdb.org/t/p/original{{poster_path}}" width= '118px'
@@ -24,5 +24,5 @@ Rating: {{vote_average}} <br>
 Release Date: {{release_date}} <br>
 <br>-->
 {{/if}}
-{{/each}}
+
 {{/each}}
