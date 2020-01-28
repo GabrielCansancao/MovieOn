@@ -1,15 +1,20 @@
 {{#each filmes}}
 {{#if title includeZero=true}}
 <div class="" style="width: 18rem;">
-    <img class="" src="https://image.tmdb.org/t/p/original{{poster_path}}">
+    <img class="" src="https://image.tmdb.org/t/p/original{{poster_path}}" width= '118px'
+    height= '178px' >
     <div class="">
         <h5 class="">{{title}}</h5>
         <p class=""> {{original_title}}</p>
-          <p class="">Overview: {{overview}}</p>
+        <p class="">Overview: {{overview}}</p>
         <p class="">Original language: {{original_language}}</p>
         <p class="">Rating: {{vote_average}}</p>
         <p class="">Release Date: {{release_date}}</p>
-        <a href="#" class="btn btn-primary">Colocar na lista</a>
+        <form action="/addLista" method="POST">
+            <input type="hidden" name="filmeId" value="{{id}}">
+            <button type="submit">Colocar na lista</button>
+        </form>
+        
     </div>
 </div>
 <!--<h1> {{title}} </h1><br>
