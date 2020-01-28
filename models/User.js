@@ -15,5 +15,6 @@ const User = db.sequelize.define('user', {
         type: db.Sequelize.STRING
     }
 } )
+
 //User.sync({force:true})
 module.exports = User
