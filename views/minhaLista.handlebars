@@ -1,4 +1,9 @@
-
+<a href="/buscarFilmes">
+  Buscar Filmes
+</a>
+<a href="/sair">
+  Logout
+</a>
 {{#each filmes}}
 
 {{#if title includeZero=true}}
@@ -15,14 +20,8 @@
         
     </div>
 </div>
-<!--<h1> {{title}} </h1><br>
-<img src="https://image.tmdb.org/t/p/original{{poster_path}}" alt="">
-Original title: {{original_title}} <br>
-Overview: {{overview}} <br>
-Original language: {{original_language}} <br>
-Rating: {{vote_average}} <br>
-Release Date: {{release_date}} <br>
-<br>-->
+
 {{/if}}
 
 {{/each}}
+

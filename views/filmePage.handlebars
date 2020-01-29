@@ -1,0 +1,24 @@
+<a href="/buscarFilmes">
+  Buscar Filmes
+</a>
+<a href="/minhaLista">
+  Minha Lista
+</a>
+<a href="/sair">
+  Logout
+</a>
+{{#if filmes.title includeZero=true}}
+<div class="" style="width: 18rem;">
+    <img class="" src="https://image.tmdb.org/t/p/original{{filmes.poster_path}}" >
+    <div class="">
+        <h5 class="">{{filmes.title}}</h5>
+        <p class=""> {{filmes.original_title}}</p>
+        <p class="">Overview: {{filmes.overview}}</p>
+        <p class="">Original language: {{filmes.original_language}}</p>
+        <p class="">Rating: {{filmes.vote_average}}</p>
+        <p class="">Release Date: {{filmes.release_date}}</p>   
+    </div>
+</div>
+
+{{/if}}
+

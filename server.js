@@ -3,10 +3,8 @@ const path = require("path");
 const session = require('express-session');
 const handlebar = require("express-handlebars");
 const bodyParser = require("body-parser");
-var serialize = require('node-serialize');
 
 const app = express();
-
 
 
 
@@ -34,15 +32,17 @@ app.set('public', __dirname + '/public');
 app.set('views', path.join(__dirname, '/views'));
 
 app.use(function (req, res, next) {
-    if (req.path === '/login' || req.path === '/criarConta') return next();
-    if (req.session.user == null) {
+    if (req.path === '/login' || req.path === '/criarConta'|| req.path === '/home') return next();
+    if (req.session.user == null&&req.path === '/' ) {
+        res.redirect('/home');
+    } else if (req.session.user == null ) {
         res.redirect('/login');
     } else {
         next();
     }
 });
 
-require('./routes')(app);
+require('./app')(app);
 
 
 
