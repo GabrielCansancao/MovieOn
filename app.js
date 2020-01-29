@@ -4,49 +4,47 @@ const objFilme = require("./models/filmedb");
 const request = require('request');
 const serialize = require('node-serialize');
 
-
 module.exports = function (app) {
 
     app.get('/buscarfilmes', function (req, res) {
         res.render("buscarFilmes");
     });
+
     app.get('/sair', function (req, res) {
         req.session.destroy();
         res.render("home");
     });
 
     app.get('/login', function (req, res) {
-
         res.render("login");
     });
+
     app.get('/home', function (req, res) {
 
         res.render("home");
     });
+
     app.get('/minhaLista', function (req, res) {
         var usuarioLogado = req.session.user;
-
         objFilme.findAll({
             where: {
                 email: serialize.unserialize(usuarioLogado).email
             },
             raw: true,
-        }).then(function (listaFilmes) {
-            var data;
+        }).then(function (listaFilmesBanco) {
+            var lista;
             var tempData = {};
             var i=0;
-            for ( var filme in listaFilmes ) {
-                tempData[filme] = listaFilmes[i]; 
+            for ( var filme in listaFilmesBanco ) {
+                tempData[filme] = listaFilmesBanco[i]; 
               i++;
              }
-            data = tempData;
+             lista = tempData;
             res.render("minhaLista", {
-                filmes: data
+                filmes: lista
             });
-
         });
     });
-
 
     app.post('/login', function (req, res) {
         user.findOne({

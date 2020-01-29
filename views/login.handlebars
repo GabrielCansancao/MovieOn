@@ -5,8 +5,8 @@
 {{/if}}
   <form action="/login" method="POST">
     <input type="text" placeholder="E-mail" name="email" required>
-    <input type="password" placeholder="Senha" name="senha" required>
+    <input type="password" minlength="4" maxlength="15" placeholder="Senha" name="senha" required>
     <button type="submit">Login</button>
-    <button><a href="/criarConta"> Cadastrar</a></button>
+    <button><a href="/criarConta">Cadastrar</a></button>
   </form>
 </div>
