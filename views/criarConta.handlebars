@@ -1,9 +1,9 @@
 <div class="cadastrar-container">
     <form action="/criarConta" method="POST">
-      <input type="text" placeholder="Usuario" name="nome">
-      <input type="password" placeholder="Senha" name="senha">
-       <input type="text" placeholder="example@ex.com" name="email">
-      <input type="text" placeholder="29/02/2012" name="data_de_nascimento">
+      <input type="text" placeholder="Nome Completo" name="nome" required >
+      <input type="password" minlength="4" maxlength="15" placeholder="Senha" name="senha"required>
+       <input type="email" placeholder="example@ex.com" name="email" required>
+      <input id="date" type="date"  maxlength="10" placeholder="29/02/2012" name="data_de_nascimento" required>
       <button type="submit">Cadastrar</button>
       <a href="/login">
       Login
