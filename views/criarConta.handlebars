@@ -1,4 +1,8 @@
-<div class="cadastrar-container">
+<div class="">
+  {{#if mensagem includeZero=true}}
+  {{mensagem}}
+{{/if}}
+<div class="">
     <form action="/criarConta" method="POST">
       <input type="text" placeholder="Nome Completo" name="nome" required >
       <input type="password" minlength="4" maxlength="15" placeholder="Senha" name="senha"required>

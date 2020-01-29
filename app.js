@@ -52,7 +52,6 @@ module.exports = function (app) {
                 email: req.body.email
             }
         }).then(function (user) {
-
             var usuario = {
                 email: user.email,
                 senha: user.senha,
@@ -78,17 +77,33 @@ module.exports = function (app) {
     });
 
     app.post('/criarConta', function (req, res) {
-        user.create({
-            email: req.body.email,
-            senha: req.body.senha,
-            nome: req.body.nome,
-            data_de_nascimento: req.body.data_de_nascimento
-
-        }).then(function () {
-            res.render("login");
-        }).catch(function (err) {
-            res.send("criarConta")
-        });
+        user.findOne({
+            where: {
+                email: req.body.email
+            }
+        }).then(function (usuario) {
+            var verifica ="";
+          if(usuario){
+            verifica = "email já existe";
+          }
+          if(verifica != "email já existe"){
+            user.create({
+                email: req.body.email,
+                senha: req.body.senha,
+                nome: req.body.nome,
+                data_de_nascimento: req.body.data_de_nascimento
+            }).then(function () {
+                var mensagem ="Cadastro criado com sucesso";
+                res.render("login",{mensagem:mensagem});
+            }).catch(function (err) {
+                var mensagem ="email já existe";
+                res.render("criarConta", {mensagem:mensagem});
+            });
+          }
+          else{
+          res.render("criarConta", {mensagem:verifica});
+        }});
+        
     });
 
     app.post('/buscarFilmes', function (req, res) {
